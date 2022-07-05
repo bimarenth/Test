@@ -10,26 +10,8 @@ app = Flask(__name__)
 DB_INSTANCE_NAME = "proto-sql"
 DB_HOST = "192.168.10.3"
 DB_USER = "postgres"
-DB_DATABASE = "sales"
-#DB_PASSWORD = "passw0rd" # don't do this. instead read it from secret manager
-
-db_password = "bima-pass"
-
-secret_manager_client = secretmanager_v1.SecretManagerServiceClient()
-
-def get_db_password_from_secrets_manager():
-
-    # query secret manager to get the secret
-
-    db_pwd_secret = secret_manager_client.access_secret_version(
-        name=("projects/489083022504/secrets/bima-pass/versions/latest")
-
-    db_pwd = db_pwd_secret.payload.data.decode('UTF-8')
-
-    return db_pwd
-
-
-DB_PASSWORD = get_db_password_from_secrets_manager()
+DB_DATABASE = "postgres"
+DB_PASSWORD = "inipassword"
 
 
 def get_project_id():
