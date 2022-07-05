@@ -2,10 +2,10 @@ steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
   dir: 'demo-5-gcp-cloud-sql'
-  args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/gcr.io/civic-gate-353504/bima-image/svccloudsql:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/civic-gate-353504/bima-image/svccloudsql:$COMMIT_SHA', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-southeast2-docker.pkg.dev/gcr.io/civic-gate-353504/bima-image/svccloudsql:$COMMIT_SHA']
+  args: ['push', 'gcr.io/civic-gate-353504/bima-image/svccloudsql:$COMMIT_SHA']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
@@ -15,7 +15,7 @@ steps:
     - 'deploy'
     - 'svc-cloudsql'
     - '--image'
-    - 'asia-southeast2-docker.pkg.dev/gcr.io/civic-gate-353504/bima-image/svccloudsql:$COMMIT_SHA'
+    - 'gcr.io/civic-gate-353504/bima-image/svccloudsql:$COMMIT_SHA'
     - '--region'
     - 'asia-southeast2'
     - '--platform'
@@ -25,10 +25,8 @@ steps:
     - '--max-instances'
     - '1'
     - '--allow-unauthenticated'
-    - '--service-account'
-    - '489083022504-compute@developer.gserviceaccount.com'
 
 images:
-- 'asia-southeast2-docker.pkg.dev/gcr.io/civic-gate-353504/bima-image/svccloudsql'
+- 'gcr.io/civic-gate-353504/bima-image/svccloudsql'
 options:
   logging: CLOUD_LOGGING_ONLY
