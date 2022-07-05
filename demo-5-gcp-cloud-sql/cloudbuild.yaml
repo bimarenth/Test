@@ -25,6 +25,10 @@ steps:
     - '--max-instances'
     - '1'
     - '--allow-unauthenticated'
+    - '--add-cloudsql-instances'
+    - 'civic-gate-353504:asia-southeast2:proto-sql'
+    - '--vpc-connector'
+    - 'vpc-con'
 
 images:
 - 'gcr.io/civic-gate-353504/bima-image/svccloudsql'
