@@ -22,8 +22,7 @@ def get_db_password_from_secrets_manager():
     # query secret manager to get the secret
 
     db_pwd_secret = secret_manager_client.access_secret_version(
-        name=f"projects/489083022504/secrets/{db_password}/versions/latest"
-    )
+        name=("projects/489083022504/secrets/bima-pass/versions/latest")
 
     db_pwd = db_pwd_secret.payload.data.decode('UTF-8')
 
