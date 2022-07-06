@@ -25,8 +25,10 @@ steps:
     - '--max-instances'
     - '1'
     - '--allow-unauthenticated'
+    - '--service-account'
+    - 'sql-test-bima@civic-gate-353504.iam.gserviceaccount.com'
     - '--add-cloudsql-instances'
-    - 'civic-gate-353504:asia-southeast2:proto-sql'
+    - 'civic-gate-353504:asia-southeast2:protosql'
     - '--vpc-connector'
     - 'vpc-con'
 
