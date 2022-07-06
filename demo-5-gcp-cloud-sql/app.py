@@ -7,38 +7,18 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-DB_INSTANCE_NAME = "my-awesome-db-instance"
+DB_INSTANCE_NAME = "protosql"
 DB_HOST = "10.197.224.3"
 DB_USER = "postgres"
 DB_DATABASE = "test"
 #DB_PASSWORD = "passw0rd" # don't do this. instead read it from secret manager
 
-my_awesome_db_password_secret_name = "my_awesome_db_password"
+my_awesome_db_password_secret_name = "bima-pass"
 
 secret_manager_client = secretmanager_v1.SecretManagerServiceClient()
 
-
-def get_numeric_project_id():
-    METADATA_URL = 'http://metadata.google.internal/computeMetadata/v1/'
-    METADATA_HEADERS = {'Metadata-Flavor': 'Google'}
-
-    try:
-        url = METADATA_URL + 'project/numeric-project-id'
-        resp = requests.get(
-            url,
-            headers=METADATA_HEADERS)
-        print("Project id is {}".format(resp.text))
-        return resp.text
-    except requests.exceptions.ConnectionError:
-        return "XXX"
-
-
-def get_db_password_from_secrets_manager():
-
-    # query secret manager to get the secret
-
     db_pwd_secret = secret_manager_client.access_secret_version(
-        name=f"projects/{get_numeric_project_id()}/secrets/{my_awesome_db_password_secret_name}/versions/latest"
+        name=f"projects/489083022504/secrets/bima-pass/versions/latest"
     )
 
     db_pwd = db_pwd_secret.payload.data.decode('UTF-8')
