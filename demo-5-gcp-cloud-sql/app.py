@@ -8,9 +8,9 @@ from datetime import datetime
 app = Flask(__name__)
 
 DB_INSTANCE_NAME = "proto-sql"
-DB_HOST = "192.168.10.3"
+DB_HOST = "10.197.224.3"
 DB_USER = "postgres"
-DB_DATABASE = "postgres"
+DB_DATABASE = "test"
 DB_PASSWORD = "inipassword"
 
 
