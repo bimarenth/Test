@@ -8,25 +8,25 @@ from datetime import datetime
 app = Flask(__name__)
 
 DB_INSTANCE_NAME = "protosql"
-DB_HOST = "10.197.224.3"
+DB_HOST = "10.197.224.5"
 DB_USER = "postgres"
 DB_DATABASE = "test"
 #DB_PASSWORD = "passw0rd" # don't do this. instead read it from secret manager
 
-my_awesome_db_password_secret_name = "bima-pass"
+# my_awesome_db_password_secret_name = "bima-pass"
 
-secret_manager_client = secretmanager_v1.SecretManagerServiceClient()
+# secret_manager_client = secretmanager_v1.SecretManagerServiceClient()
 
-    db_pwd_secret = secret_manager_client.access_secret_version(
-        name=f"projects/489083022504/secrets/bima-pass/versions/latest"
-    )
+#     db_pwd_secret = secret_manager_client.access_secret_version(
+#        name=f"projects/489083022504/secrets/bima-pass/versions/latest"
+#    )
 
-    db_pwd = db_pwd_secret.payload.data.decode('UTF-8')
+#    db_pwd = db_pwd_secret.payload.data.decode('UTF-8')
 
-    return db_pwd
+#    return db_pwd
 
 
-DB_PASSWORD = get_db_password_from_secrets_manager()
+# DB_PASSWORD = get_db_password_from_secrets_manager()
 
 
 def get_project_id():
